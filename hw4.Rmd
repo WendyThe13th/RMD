@@ -1,0 +1,40 @@
+---
+title: "Untitled"
+author: "Mengqi Zhu"
+date: "2017年10月27日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
+
+### Problem 1
+```{r}
+pups_data = read_csv("./data_import_examples/FAS_pups.csv", col_types = "ciiiii") %>% 
+  clean_names() %>% 
+  mutate(sex = recode(sex, `1` = "male", `2` = "female"))
+
+pups_tidy_data = gather(pups_data, key = PD_outcome, value = days, pd_ears: pd_walk) %>% 
+  drop_na()
+```
+
+The collaborator will create a plot showing the distribution of post-natal days for each developmental landmark.
+```{r}
+#a plot showing the distribution of post-natal days for each developmental landmark.
+
+pups_tidy_data %>% 
+  group_by(PD_outcome) %>% 
+  ggplot(aes(x = litter_number, y = days, color = PD_outcome)) +
+  geom_point(alpha = .4) +
+  facet_grid(. ~PD_outcome)
+
+```
+
+The GitHub repo containing our solution to this problem is [here](https://github.com/jeff-goldsmith/vbvs.concurrent).
