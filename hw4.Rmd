@@ -1,23 +1,21 @@
 ---
-title: "Untitled"
+title: "p8105_hw4_mz2662"
 author: "Mengqi Zhu"
-date: "2017年10月27日"
+date: "2017-10-27"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-```{r}
+```{r message=FALSE,warning=FALSE}
 library(tidyverse)
 library(janitor)
 library(readxl)
 ```
 
 For Problem1, Weijie Liu(UNI: wl2632) is my collaborator.
-### Problem 1
-```{r}
+
+# Problem 1
+```{r message=FALSE,warning=FALSE}
 pups_data = read_csv("./data_import_examples/FAS_pups.csv", col_types = "ciiiii") %>% 
   clean_names() %>% 
   mutate(sex = recode(sex, `1` = "male", `2` = "female"))
@@ -26,7 +24,7 @@ pups_tidy_data = gather(pups_data, key = PD_outcome, value = days, pd_ears: pd_w
   na.omit()
 ```
 
-```{r}
+```{r message=FALSE,warning=FALSE}
 library(ggridges)
 library(ggthemes)
 pups_tidy_data %>%
@@ -36,3 +34,5 @@ pups_tidy_data %>%
 
 Comments:
 We can see from the plot that the landmarks occur in the sequence of: ears, pivot, walk, eyes. The post-natal days of ears are centralized around 3-5 days, the post-natal days of pivot are centralized around 5-8 days, the post-natal days of walk are centralized around 8-11 days, the post-natal days of eyes are centralized around 12-14 days.
+
+The GitHub repo containing our solution to this problem is https://github.com/WendyThe13th/RMD.
