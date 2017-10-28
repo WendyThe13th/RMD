@@ -34,3 +34,5 @@ pups_tidy_data %>%
   geom_density_ridges(scale = .75)
 ```
 
+Comments:
+We can see from the plot that the landmarks occur in the sequence of: ears, pivot, walk, eyes. The post-natal days of ears are centralized around 3-5 days, the post-natal days of pivot are centralized around 5-8 days, the post-natal days of walk are centralized around 8-11 days, the post-natal days of eyes are centralized around 12-14 days.
