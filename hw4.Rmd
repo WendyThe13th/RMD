@@ -26,3 +26,11 @@ pups_tidy_data = gather(pups_data, key = PD_outcome, value = days, pd_ears: pd_w
   na.omit()
 ```
 
+```{r}
+library(ggridges)
+library(ggthemes)
+pups_tidy_data %>%
+  ggplot(aes(x = days, y = PD_outcome, color = PD_outcome)) +
+  geom_density_ridges(scale = .75)
+```
+
